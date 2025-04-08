@@ -2,25 +2,33 @@
 
 * {
   margin: 0;
-  padding: 0;
+  padding: 5px;
   box-sizing: border-box;
+  border-radius: 15px; 
 }
 
 :root {
-  --clr-white: #FFFFFF;
-  --clr-black: #000000;
-  --clr-grey: #2b2727;
-  --clr-grey-2: #2b2727;
+  --clr-white: #000000;
+  --clr-black: #ff5900;
+  --clr-grey: #ffffff;
+  --clr-grey-2: #ffffff;
 
-  --clr-dark-blue: #0237AB;
-  --clr-light-blue: #125AC6;
+  --clr-dark-blue: #f95300;
+  --clr-light-blue: #ff8d1c;
 }
 
 body {
   margin: 0;
-  font-family: "Open Sans";
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: url("./components/sportbg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: rgb(255, 255, 255); /* Ensuring text is visible over the background */
 }
 
 /* ------------------------------------------------------ */
@@ -36,24 +44,24 @@ nav {
   display: flex;
   align-items: center;
 
-  padding: 0 75px;
+  padding: 0 105px;
 
   grid-column: 1 / span 3;
 
-  height: 65px;
+  height: 50px;
 }
 
 .nav__brand h1 {
   color: var(--clr-white);
 
-  font-family: "Poiret One";
+  font-family: "script";
   font-size: 1.50em;
-  font-style: italic;
-  margin-right: 10px;
+  font-style: Bold;
+  margin-right: 40px;
 }
 
 .nav__search {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   background-image: url("./assets/magnifying-glass.svg");
   background-repeat: no-repeat;
   background-position-y: center;
@@ -63,9 +71,9 @@ nav {
   height: 35px;
 
   border: none;
-  border-radius: 4px;
+  border-radius: 40px;
   margin: 0 5px;
-  padding-left: 30px;
+  padding-left: 50px;
 }
 
 .nav__search::placeholder {
@@ -134,7 +142,7 @@ nav {
 /* -- HEADER -- */
 
 header {
-  background-image: linear-gradient(45deg, var(--clr-dark-blue) 10%, var(--clr-light-blue) 20%, var(--clr-dark-blue) 50%, var(--clr-light-blue) 120%);
+  background-image: linear-gradient(45deg, var(--clr-dark-blue) 0%, var(--clr-light-blue) 20%, var(--clr-dark-blue) 50%, var(--clr-light-blue) 120%);
   background-size: contain;
   background-position: right;
   background-repeat: no-repeat;
@@ -200,16 +208,19 @@ header {
 /* -- CARDS -- */
 
 .card {
+  display: flex; /* Ensure the card is visible */
   align-items: center;
 
   width: 95%;
   max-width: 850px;
-  height: 75px;
+  height: 95px;
 
   margin: 25px auto;
 
   position: relative;
   transition: all 250ms ease;
+  background-color: rgb(255, 255, 255); /* Updated background color */
+  color: black; /* Updated font color */
 }
 
 .card__info {
@@ -223,12 +234,13 @@ header {
   text-align: left;
 
   transition: 250ms ease all;
+  background-color: white; /* Updated background color */
+  color: black; /* Updated font color */
 }
 
 .card__info:hover {
-  background: rgba(18, 90, 198, 0.2);
+  background: rgba(255, 102, 0, 0.509);
 }
-
 
 .card__info p small {
   font-size: clamp(0.80rem, 2vw, 0.90rem);
@@ -321,11 +333,18 @@ header {
 }
 
 .card__button--out {
-  background-color: #BA1840;
+  background-color: #ffffff;
 }
 
 .card hr {
   margin-top: 15px;
+}
+
+.cards {
+  display: flex; /* Ensure cards are displayed */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Add spacing between cards */
 }
 
 /* ------------------------------------------------------ */
@@ -533,4 +552,5 @@ header {
     grid-row: 2 / span 2;
     place-self: center;
   }
+  
 }

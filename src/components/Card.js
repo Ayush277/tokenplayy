@@ -1,10 +1,19 @@
-import { ethers } from 'ethers'
+import { ethers } from 'ethers';
 
-const Card = ({ occasion, toggle, setToggle, setOccasion }) => {
-  const togglePop = () => {
-    setOccasion(occasion)
-    toggle ? setToggle(false) : setToggle(true)
+const Card = ({ occasion, id, tokenMaster, provider, account, toggle, setToggle, setOccasion }) => {
+  console.log('Occasion Data:', occasion); // Debugging log to check occasion structure
+
+  if (!occasion || !occasion.name) {
+    console.warn('Invalid occasion data:', occasion); // Debugging log
+    return null; // Do not render if occasion data is invalid
   }
+
+  console.log('Rendering Card with occasion:', occasion); // Debugging log
+
+  const togglePop = () => {
+    setOccasion(occasion);
+    toggle ? setToggle(false) : setToggle(true);
+  };
 
   return (
     <div className='card'>
@@ -21,35 +30,27 @@ const Card = ({ occasion, toggle, setToggle, setOccasion }) => {
           <small>{occasion.location}</small>
         </p>
 
+        
         <p className='card__cost'>
           <strong>
-            {ethers.utils.formatUnits(occasion.cost.toString(), 'ether')}
-          </strong>
-          ETH
+            {occasion.cost ? ethers.utils.formatUnits(occasion.cost.toString(), 'ether') : '0'}
+          </strong> ETH
         </p>
 
-        {occasion.tickets.toString() === "0" ? (
-          <button
-            type="button"
-            className='card__button--out'
-            disabled
-          >
+        {occasion.tickets && occasion.tickets.toString() === "0" ? (
+          <button type="button" className='card__button--out' disabled>
             Sold Out
           </button>
         ) : (
-          <button
-            type="button"
-            className='card__button'
-            onClick={() => togglePop()}
-          >
+          <button type="button" className='card__button' onClick={togglePop}>
             View Seats
           </button>
         )}
       </div>
 
       <hr />
-    </div >
+    </div>
   );
-}
+};
 
 export default Card;

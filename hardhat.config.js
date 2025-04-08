@@ -1,6 +1,8 @@
 require("@nomicfoundation/hardhat-toolbox");
 
-/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.17",
+  solidity: "0.8.18",  // Ensure this matches your contract version
+  networks: {
+    hardhat: {},
+  },
 };

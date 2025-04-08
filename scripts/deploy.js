@@ -20,46 +20,47 @@ async function main() {
   // List 6 events
   const occasions = [
     {
-      name: "UFC Miami",
+      name: "IPL Final 2025",
       cost: tokens(3),
       tickets: 0,
-      date: "May 31",
-      time: "6:00PM EST",
-      location: "Miami-Dade Arena - Miami, FL"
+      date: "May 26",
+      time: "7:30 PM IST",
+      location: "Narendra Modi Stadium - Ahmedabad"
     },
     {
-      name: "ETH Tokyo",
+      name: "ISL Final 2025",
       cost: tokens(1),
-      tickets: 125,
-      date: "Jun 2",
-      time: "1:00PM JST",
-      location: "Tokyo, Japan"
+      tickets: 850,
+      date: "May 30",
+      time: "7:00 PM IST",
+      location: "Salt Lake Stadium - Kolkata"
     },
     {
-      name: "ETH Privacy Hackathon",
-      cost: tokens(0.25),
-      tickets: 200,
-      date: "Jun 9",
-      time: "10:00AM TRT",
-      location: "Turkey, Istanbul"
+      name: "Pro Kabaddi League Finals",
+      cost: tokens(0.5),
+      tickets: 1_200,
+      date: "June 5",
+      time: "8:00 PM IST",
+      location: "Gachibowli Indoor Stadium - Hyderabad"
     },
     {
-      name: "Dallas Mavericks vs. San Antonio Spurs",
+      name: "India vs Pakistan T20",
       cost: tokens(5),
       tickets: 0,
-      date: "Jun 11",
-      time: "2:30PM CST",
-      location: "American Airlines Center - Dallas, TX"
+      date: "June 12",
+      time: "7:00 PM IST",
+      location: "Wankhede Stadium - Mumbai"
     },
     {
-      name: "ETH Global Toronto",
-      cost: tokens(1.5),
-      tickets: 125,
-      date: "Jun 23",
-      time: "11:00AM EST",
-      location: "Toronto, Canada"
+      name: "NBA India Games",
+      cost: tokens(2),
+      tickets: 750,
+      date: "June 20",
+      time: "6:30 PM IST",
+      location: "NSCI Dome - Mumbai"
     }
-  ]
+]
+
 
   for (var i = 0; i < 5; i++) {
     const transaction = await tokenMaster.connect(deployer).list(

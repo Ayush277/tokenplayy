@@ -11,28 +11,43 @@ const SeatChart = ({ occasion, tokenMaster, provider, setToggle }) => {
   const [hasSold, setHasSold] = useState(false)
 
   const getSeatsTaken = async () => {
-    const seatsTaken = await tokenMaster.getSeatsTaken(occasion.id)
-    setSeatsTaken(seatsTaken)
+    try {
+        const seatsTaken = await tokenMaster.getSeatsTaken(occasion.id)
+        console.log("Seats Taken:", seatsTaken); // Debugging
+        setSeatsTaken(seatsTaken)
+    } catch (error) {
+        console.error("Error fetching seats:", error)
+    }
+}
+
+
+const buyHandler = async (_seat) => {
+  try {
+      setHasSold(false)
+
+      const signer = await provider.getSigner()
+      console.log("Buying seat:", _seat); // Debugging
+      const transaction = await tokenMaster.connect(signer).mint(occasion.id, _seat, { value: occasion.cost })
+      await transaction.wait()
+
+      setHasSold(true)
+      console.log("Seat purchased successfully!");
+  } catch (error) {
+      console.error("Error purchasing seat:", error);
   }
+}
 
-  const buyHandler = async (_seat) => {
-    setHasSold(false)
 
-    const signer = await provider.getSigner()
-    const transaction = await tokenMaster.connect(signer).mint(occasion.id, _seat, { value: occasion.cost })
-    await transaction.wait()
+useEffect(() => {
+  console.log("Seat update triggered:", hasSold);
+  getSeatsTaken();
+}, [hasSold]);
 
-    setHasSold(true)
-  }
-
-  useEffect(() => {
-    getSeatsTaken()
-  }, [hasSold])
 
   return (
     <div className="occasion">
       <div className="occasion__seating">
-        <h1>{occasion.name} Seating Map</h1>
+        <h1>{occasion.name}Game seats</h1>
 
         <button onClick={() => setToggle(false)} className="occasion__close">
           <img src={close} alt="Close" />
